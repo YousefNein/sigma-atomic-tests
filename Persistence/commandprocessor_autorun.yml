@@ -18,9 +18,10 @@ detection:
   sysmon_event:
     EventID: 13
     Image|endswith: '\powershell.exe'
+    TargetObject: 'HKLM\SOFTWARE\Microsoft\Command Processor\AutoRun'
   windows_eventlog:
     EventID: 4657
-    ObjectName: 'HKLM\SOFTWARE\Microsoft\Command Processor\AutoRun'
+    TargetObject: 'HKLM\SOFTWARE\Microsoft\Command Processor\AutoRun'
   condition: sysmon_event or windows_eventlog
 
 falsepositives:

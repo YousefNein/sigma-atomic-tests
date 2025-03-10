@@ -1,0 +1,47 @@
+title: Creation of a Startup, Logon or a One time Scheduled Task
+id: 2617e7ed-adb7-40ba-b0f3-8f9985fe6c09
+status: test
+description: Detects the creation of scheduled tasks that are configured to run at startup, logon, or a one time using schtasks.exe or cmd.exe. This can be indicative of persistence mechanisms used by attackers.
+author: Yousef M.Helmy
+date: 2025-03-07
+modefied: 2025-03-10
+tags:
+    - attack.t1053.005
+    - attack.ta0003
+references:
+    - https://www.atomicredteam.io/atomic-red-team/atomics/T1053.005#atomic-test-1---scheduled-task-startup-script
+    - https://www.atomicredteam.io/atomic-red-team/atomics/T1053.005#atomic-test-2---scheduled-task-local
+    - https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks
+    - https://pentestlab.blog/2019/11/04/persistence-scheduled-tasks/
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_proc:
+        Image|endswith:
+            - '\schtasks.exe'
+            - '\cmd.exe'
+            - '\powershell.exe'
+    selection_filename:
+        OriginalFilename:
+            - 'schtasks.exe'
+            - 'cmd.exe'
+            - 'powershell.exe'
+    selection_cmd_once:
+        CommandLine|contains:
+          - ' /Create '
+          - ' SCHTASKS '
+          - ' ONCE'
+    selection_cmd_logon:
+        CommandLine|contains:
+          - ' onlogon '
+          - ' onstart '
+          - ' /create'
+    selection_cmd_negate:
+        - ' /delete '
+        - ' /Delete'
+    condition: (selection_proc or selection_filename) and (selection_cmd_once or selection_cmd_logon) and not selection_cmd_negate
+falsepositives:
+    - Administrative activity
+    - Scripts and administrative tools used in the monitored environment
+level: medium

@@ -1,0 +1,38 @@
+Process Create:
+RuleName: -
+UtcTime: 2025-03-07 00:28:50.397
+ProcessGuid: {689153b7-3dc2-67ca-5702-000000003100}
+ProcessId: 11860
+Image: C:\Windows\System32\schtasks.exe
+FileVersion: 10.0.26100.1882 (WinBuild.160101.0800)
+Description: Task Scheduler Configuration Tool
+Product: Microsoft® Windows® Operating System
+Company: Microsoft Corporation
+OriginalFileName: schtasks.exe
+CommandLine: schtasks  /create /tn "T1053_005_OnStartup" /sc onstart /ru system /tr "cmd.exe /c calc.exe"
+CurrentDirectory: C:\Users\robotnik\AppData\Local\Temp\
+
+Process Create:
+RuleName: -
+UtcTime: 2025-03-10 06:27:45.770
+ProcessGuid: {689153b7-8661-67ce-7a02-000000003200}
+ProcessId: 3888
+Image: C:\Windows\System32\cmd.exe
+FileVersion: 10.0.26100.3037 (WinBuild.160101.0800)
+Description: Windows Command Processor
+Product: Microsoft® Windows® Operating System
+Company: Microsoft Corporation
+OriginalFileName: Cmd.Exe
+CommandLine: "cmd.exe" /c SCHTASKS /Create /SC ONCE /TN spawn /TR C:\windows\system32\cmd.exe /ST 20:10
+CurrentDirectory: C:\Users\robotnik\AppData\Local\Temp\
+User: VULN-WINDOWS11\robotnik
+LogonGuid: {689153b7-7c79-67ce-c834-070000000000}
+LogonId: 0x734C8
+TerminalSessionId: 1
+IntegrityLevel: High
+Hashes: MD5=0CA9EBA80FC6A89C92296126AAFF6C92,SHA256=10D6615A499E4D1EEF0CBCDA9DB2661B2AF28B5866AB6C06DCD87AE56B180DBF,IMPHASH=EDEF5A2A98D730D4288FE684BA0B0E00
+ParentProcessGuid: {689153b7-8055-67ce-a401-000000003200}
+ParentProcessId: 10016
+ParentImage: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+ParentCommandLine: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+ParentUser: VULN-WINDOWS11\robotnik
